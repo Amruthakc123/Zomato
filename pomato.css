@@ -1,0 +1,65 @@
+#test1{
+    background-color: rgba(255, 253, 253, 0.973);
+    padding: 5px;
+    margin: 5px;
+}
+
+
+  
+#test2 button {
+    display: inline;
+    color: rgb(5, 5, 5);
+    text-align: center;
+    padding: 12px 16px;
+    text-decoration: none;
+  }
+  
+  #test2 {
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+    background-color: rgb(255, 255, 255);
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 0;
+    
+  }
+  
+button {
+    float: left;
+  }
+  
+  #test2 button{
+    display: block;
+    color: rgb(0, 0, 0);
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  #test2 button:hover {
+    background-color: rgb(245, 245, 245);
+  }
+  
+  .active {
+    background-color: #4CAF50;
+  }
+
+
+
+#test3:active{
+    color: red;
+      }
+
+#test5:active{
+        color: red;
+          }
+
+#test6:active{
+            color: red;
+              }
+
+#test7:hover{
+  cursor: pointer;
+}

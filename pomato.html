@@ -1,0 +1,1559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pomato</title>
+  
+
+<!-- dropdown -->
+<link rel="stylesheet" href="./styles.css">
+	<script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			$(".default_option").click(function(){
+			  $(".dropdown ul").addClass("active");
+			});
+
+			$(".dropdown ul li").click(function(){
+			  var text = $(this).text();
+			  $(".default_option").text(text);
+			  $(".dropdown ul").removeClass("active");
+			});
+		});
+	</script>
+
+
+
+<!-- slick -->
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css">
+
+<!-- Slick -->
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" 
+crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" 
+crossorigin="anonymous" referrerpolicy="no-referrer" /> 
+
+<!-- css  -->
+    <link rel = "stylesheet" href="./pomato.css">
+    
+  <!-- bootstrap -->
+    <link rel="stylesheet" href="./bootstrap-4.6.0-dist/css/bootstrap.min.css"/>
+
+  <!-- font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<!-- chatbot -->
+
+
+<style>
+  body {font-family: Arial, Helvetica, sans-serif;}
+  * {box-sizing: border-box;}
+  
+  /* Button used to open the chat form - fixed at the bottom of the page */
+  .open-button {
+    
+    color: black;
+    padding: 16px 20px;
+    
+    cursor: pointer;
+    opacity: 0.8;
+    position: fixed;
+    bottom: 23px;
+    right: 28px;
+    width: 28px;
+  }
+  
+  /* The popup chat - hidden by default */
+  .chat-popup {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    right: 15px;
+    border: 3px solid #f1f1f1;
+    z-index: 9;
+  }
+  
+  /* Add styles to the form container */
+  .form-container {
+    max-width: 300px;
+    padding: 10px;
+    background-color: white;
+  }
+  
+  /* Full-width textarea */
+  .form-container textarea {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    border: none;
+    background: #f1f1f1;
+    resize: none;
+    min-height: 200px;
+  }
+  
+  /* When the textarea gets focus, do something */
+  .form-container textarea:focus {
+    background-color: #ddd;
+    outline: none;
+  }
+  
+  /* Set a style for the submit/send button */
+  .form-container .btn {
+    background-color: green;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom:5px;
+    opacity: 0.8;
+  }
+  
+  /* Add a red background color to the cancel button */
+  .form-container .cancel {
+    background-color: red;
+  }
+  
+  /* Add some hover effects to buttons */
+  .form-container .btn:hover, .open-button:hover {
+    opacity: 1;
+  }
+
+</style>
+
+
+
+  </head>
+<body id="up">
+    <!-- Navbar -->
+    
+
+<div class="container">
+                <div class="row">
+                    <nav class="navbar navbar-expand-lg navbar-light ">
+                        <div class="col-sm-4 col-md-2">
+                            <a class="navbar-brand h1 font-weight-bolder" hrf="#" style="font-size: 35px;">pomato</a>
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" 
+                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                            </button>
+                        </div>
+                        <div class="col-md-8 col-md-6 " >
+                            <!-- <div class="border border-light rounded"><input class="form-control mr-lg-12 " type="search"
+                             placeholder="Search for restaurant, cuisine or a dish" 
+                             aria-label="Search">
+                            </div> -->
+                            <div class="wrapper" >
+                              <div class="search_box col-xl-12">
+                                <div class="dropdown col-lg-4 ">
+                                  <div class="default_option"><img src="https://toppng.com/uploads/preview/pin-drop-icon-drop-pin-icon-11553428790llctccp464.png" height="35px" width="32px" style="padding-bottom:10px;"> Bengaluru</div>
+                                  <ul>
+                                    <li class="col-lg-6" style="color: red;"><i class="fas fa-location"></i> Detect Current Location using GPS</li><hr>
+                                    <li class="col-lg-6"> Recent Locations
+                                      <hr>
+                                    </li>
+                                    <li class="col-lg-6"><i class="fas fa-history"></i> India</li>
+                                    <hr>
+                                    <li class="col-lg-6"><i class="fas fa-history"></i> Bengaluru</li>
+                                  </ul>
+                                </div>
+                                <div class="search_field col-lg-8">
+                                  <input type="text" class="input" placeholder=" search for restaurant, cuisine or a dish">
+                                  <i class="fas fa-search"></i>
+                                </div>
+                              </div>
+                        </div>
+                      </div>
+                   
+
+        <!-- Log in -->
+       
+        <div class="col-sm col-sm-3" id="test4" style="margin-left: 300px;">  
+        <button type="button" class="btn mt-2" data-toggle="modal" data-target="#loginModal" id="book">Log in</button>  
+        </div>
+        <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header border-bottom-0"><h1 class="text-left">Log in</h1>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body"> 
+                        <div class="form-title text-center"> </div>  
+                        <div class="d-flex flex-column text-center">  
+                    <form >
+                                   
+                        <div class="form-group">
+                        <input type="tel" class="form-control" id="phone"placeholder="Enter Phone number ">
+                        </div>
+
+
+                        <div class="form-group">
+                          <button type="button" class="btn btn-danger btn-block btn-round">Send OTP</button>
+                        </div>
+                        <br/>  
+                        <br/> 
+
+                     <div class ="text-muted">Or</div> <br/>  
+
+                     <div class="form-group">
+                      <button type="button" class="btn btn-light btn-block btn-round border-dark text-muted"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9S0U0ZgvMcaFNfuWfQ1wPxPptBWmG7ESXog&usqp=CAU" height="30px" width="30px"> Continue with Email</button>
+                      </div>
+                                  <br/>  
+                                  <br/>  
+                                   
+                      <div class="form-group">
+                        <button type="button" class="btn btn-light btn-block btn-round border-dark text-muted"><img src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-webinar-optimizing-for-success-google-business-webinar-13.png" height="30px" width="30px">Continue with Google</button>
+                      </div>
+
+                      <hr>
+                      <br>
+                   <p class="lead text-left">New to pomato?
+                   <a href="#signup" class="text-danger lead">Create account</a>
+                    </form>
+                                           
+                    
+                           </div>
+                    </div>
+                </div>                                
+            </div>
+        </div>
+      
+        
+        <!-- jQuery -->
+        <script src='https://code.jquery.com/jquery-3.3.1.slim.min.js'></script>
+        <!-- Popper JS -->
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js'></script>
+        <!-- Bootstrap JS -->
+        <script src='https://bookstackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js'></script>
+                                
+        
+        <!-- Sign up -->
+        
+        <div class="col-xs-2 col-sm-2" >  
+            <button type="button" class="btn mt-2" data-toggle="modal" data-target="#loginModal1" id="book1">Sign up</button>  
+            </div>
+            <div class="modal fade" id="loginModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+                <div class="modal-dialog modal-dialog-centered" role="document"  >
+                    <div class="modal-content">
+                        <div class="modal-header border-bottom-0"><h1 class="text-left" >Sign up</h1>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-title text-center"></div>
+                            <div class="d-flex flex-column text-center">
+                        <form >
+                                                 
+                            <div class="form-group">
+                            <input type="text" class="form-control" id="name"placeholder="Full Name ">
+                            </div>
+                                                
+                            <div class="form-group">
+                            <input type="email" class="form-control" id="name"placeholder="Email ">
+                            </div>
+
+                            <div class="form-group text-left">
+                            <input type="checkbox" aria-label="Checkbox for following text input" required> I agree to Zomato's Terms of Service, Privacy Policy and Content Policies
+                          </div> 
+                            
+                            <div class="form-group">
+                              <button type="button" class="btn btn-danger btn-block btn-round">Create account</button>
+                            </div>  
+
+                            
+                         <div class ="text-muted">Or</div>
+                         
+                         <div class="form-group">
+                          <button type="button" class="btn btn-light btn-block btn-round border-dark text-muted" ><img src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-webinar-optimizing-for-success-google-business-webinar-13.png" height="30px" width="30px">Continue with Google</button>
+                        </div>
+                        
+                        <p class="lead text-left">Already have an account?
+                          <a href="#login" class="text-danger lead">Log in</a>
+                           
+                        </form>
+                                               
+                            
+                                   
+                            </div>
+                        </div>
+                    </div>                                
+                </div>
+            </div>
+                                                    
+                                     
+            <!-- jQuery -->
+            <script src='https://code.jquery.com/jquery-3.3.1.slim.min.js'></script>
+            <!-- Popper JS -->
+            <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js'></script>
+            <!-- Bootstrap JS -->
+            <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js'></script>
+                                
+                                
+                                
+                                
+</nav>
+</div>            
+                                
+          <br/>
+          <br/>                       
+          
+
+<!-- second navbar -->
+
+     <div class="row" style="background-color: white;" >
+       <div id="test3">    <a class="nav lead text-reset" href="#delivery" style="margin-left: 20px;" ><img src="https://www.netclipart.com/pp/m/76-761918_home-delivery-charge-delivery-boy-logo-png.png" height="60px" width="60px" style="border-radius: 20px; "> Delivery<span class="sr-only">(current)</a> </div> 
+        <div id="test5">      <a class="nav lead text-reset" href="#Dining" style="margin-left: 45px;" ><img src="https://img.pngio.com/restaurant-svg-png-icon-free-download-217000-onlinewebfontscom-restaurant-icon-png-980_980.png" height="60px" width="60px" style="border-radius: 20px; " > Dining Out<span class="sr-only">(current)</a> </div>
+          <div id="test6">        <a class="nav lead text-reset" href="#Night"style="margin-left: 45px;" ><img src="https://image.flaticon.com/icons/png/512/182/182277.png" height="60px" width="60px" style="border-radius: 20px; "> NightLife<span class="sr-only">(current)</a> </div>
+    </div>
+<!-- <br/>
+<br/> -->
+
+<hr>
+
+<!-- <br/>
+<br/> -->
+
+<!-- Third -->
+<!-- <div id="test2" >
+<button type="button" class="btn btn-light border border-dark btn-lg "><img src="https://seekicon.com/free-icon-download/filter_12.svg" height="30px" width="30px"> Filters </button>
+<button type="button" class="btn btn-light border border-dark btn-lg" style="margin-left: 20px;">Pure Veg</button>
+<button type="button" class="btn btn-light border border-dark btn-lg" style="margin-left: 20px;"><img src="https://www.llanonationalbank.com/portals/llanonationalbank/Users/002/14/514/arrows%20up%20and%20down.png" height="30px" width="30px"> Delivery Time</button>
+<button type="button" class="btn btn-light border border-dark btn-lg" style="margin-left: 20px;">Rating: 4.0+</button>
+<button type="button" class="btn btn-light border border-dark btn-lg"style="margin-left: 20px;">Great Offers</button> -->
+<!-- <button type="button" class="btn btn-light border border-dark "style="margin-left: 20px;"> -->
+
+
+  <!-- <div class="dropdown">
+    <button class="btn btn-light dropdown-toggle border-dark btn-lg" type="button" id="dropdownMenuButton5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-left: 20px;">
+      Cuisines
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton5">
+      <a class="dropdown-item" href="#">A</a>
+      <a class="dropdown-item" href="#">B</a>
+      <a class="dropdown-item" href="#">C</a>
+    </div>
+  </div>
+</div> -->
+
+
+<!-- dropdown jquery -->
+<script src="./jquery.js"></script>
+<script src="./bootstrap-4.6.0-dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+<!-- <br>
+<br> -->
+<!-- <br>
+<br> -->
+<br/>
+<br/>
+<!-- slick carousel -->
+<div class="bg-light mt-12 " >
+<h1>Inspiration for your first order</h1><br/>
+<br/>
+<ul class="owl-carousel bg-light">
+<li class="text-muted bg-light"><img src="https://b.zmtcdn.com/data/o2_assets/7e83ad932f340bacd71bd7e891ede6541632716696.png" height="200px" width="200px"><h1>Biryani</h1></li>
+<li class="text-muted bg-light"><img src="https://b.zmtcdn.com/data/o2_assets/d0bd7c9405ac87f6aa65e31fe55800941632716575.png" height="200px" width="200px"><h1>Pizza</h1></li>
+<li class="text-muted bg-light"><img src="https://b.zmtcdn.com/data/o2_assets/dff007e05e2f72a4abc0772c7a8cd0951632716697.png" height="200px" width="200px"><h1>Burger</h1></li>
+<li class="text-muted bg-light"><img src="https://b.zmtcdn.com/data/o2_assets/adbe5236974520ecba7cb9f47e4c92011632716658.png" height="200px" width="200px"><h1>Chicken</h1></li>
+<li class="text-muted bg-light"><img src="https://b.zmtcdn.com/data/o2_assets/e61347d2b01cfae669530bd4b8e778e41632716577.png" height="200px" width="200px"><h1>Rolls</h1></li>
+<li class="text-muted bg-light"><img src="https://b.zmtcdn.com/data/dish_images/914402aa1bbe153d735c51a3ba4fe61b1629132873.png" height="200px" width="200px"><h1>Kesari</h1></li>
+<li class="text-muted bg-light"><img src="https://b.zmtcdn.com/data/o2_assets/2b5a5b533473aada22015966f668e30e1633434990.png" height="200px" width="200px"><h1>Paratha</h1></li>
+<li class="text-muted bg-light"><img src="https://b.zmtcdn.com/data/o2_assets/13bdf0d4c96d44e6ddb21fedde0fe4081632716661.png" height="200px" width="200px"><h1>Fries</h1></li>
+<li class="text-muted bg-light"><img src="https://b.zmtcdn.com/data/o2_assets/71905bd8920905bf47ad57b406cc3ced1632716602.png" height="200px" width="200px"><h1>Kebab</h1></li>
+<li class="text-muted bg-light"><img src="https://b.zmtcdn.com/data/dish_images/fa759bc3579ad9a47445e0ee4f9568fb1613675927.png" height="200px" width="200px"><h1>Shake</h1></li>
+<li class="text-muted bg-light"><img src="https://b.zmtcdn.com/data/o2_assets/9694b563c793ea7bddf49f619dd4b7751632716697.png" height="200px" width="200px"><h1>Cake</h1></li>
+<li class="text-muted bg-light"><img src="https://b.zmtcdn.com/data/o2_assets/54a0bbb5a8b41f42d202a5ceebd842141632716601.png" height="200px" width="200px"><h1>Ice cream</h1></li>
+</ul>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+ crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+<!-- <script type="text/javascript">
+
+// $('.slider1').slick({
+// infinite: true,
+// slidesToShow: 4,
+// slidesToScroll: 1
+// });
+
+ </script>  -->
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" 
+crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" 
+integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script type="text/javascript">
+$('.owl-carousel').owlCarousel({
+    loop:true,
+    margin:10,
+    nav:true,
+    responsive:{
+        0:{
+            items:1
+        },
+        600:{
+            items:3
+        },
+        1000:{
+            items:5
+        }
+    }
+})
+</script>
+
+
+
+
+
+
+
+
+
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+
+<!-- second slick carousel -->
+
+<!-- slick carousel -->
+<div class="bg-light mt-12 " >
+  <h1>Top brands for you</h1><br/>
+  <br/>
+  <ul class="slider2">
+  <li class="text-muted"><img src="https://b.zmtcdn.com/data/brand_creatives/logos/874c2b2b4554f4aed7dd3bb4e755c420_1604383019.png?output-format=webp" height="200px" width="200px"><h1>41 min</h1></li>
+  <li class="text-muted"><img src="https://b.zmtcdn.com/data/brand_creatives/logos/7a7904eff687a7456599074a4e7d2335_1617875100.png?output-format=webp" height="200px" width="200px"><h1>36 min</h1></li>
+  <li class="text-muted"><img src="https://b.zmtcdn.com/data/brand_creatives/logos/ec72c289aa01d947fe15a009ce8e559f_1616052816.png?output-format=webp" height="200px" width="200px"><h1>46 min</h1></li>
+  <li class="text-muted"><img src="https://b.zmtcdn.com/data/brand_creatives/logos/2159c4a55b3ff2362678141e6a83645f_1622476257.png?output-format=webp" height="200px" width="200px"><h1>45 min</h1></li>
+  <li class="text-muted"><img src="https://b.zmtcdn.com/data/brand_creatives/logos/878a69aaa88728f7073d1e3d13a5a047_1628324346.png?output-format=webp" height="200px" width="200px"><h1>58 min</h1></li>
+  <li class="text-muted"><img src="https://b.zmtcdn.com/data/brand_creatives/logos/08da44392a73e7e9db7be1e47863f07d_1605502580.png?output-format=webp" height="200px" width="200px"><h1>49 min</h1></li>
+  <li class="text-muted"><img src="https://b.zmtcdn.com/data/brand_creatives/logos/7cbdbcec54cf7a207bcc565067cf8993_1617875078.png?output-format=webp" height="200px" width="200px"><h1>49 min</h1></li>
+  <li class="text-muted"><img src="https://b.zmtcdn.com/data/brand_creatives/logos/1caa10bf3067695b7760cd83aaa38ee5_1549360511.png?output-format=webp" height="200px" width="200px"><h1>50 min</h1></li>
+  <li class="text-muted"><img src="https://b.zmtcdn.com/data/brand_creatives/logos/cdb092ffa9529b3c6806f42b4c0ef590_1608180972.png?output-format=webp" height="200px" width="200px"><h1>44 min</h1></li>
+  <li class="text-muted"><img src="https://b.zmtcdn.com/data/brand_creatives/logos/4c0ad890a010ebed2a98520a45a1a222_1543210471.png?output-format=webp" height="200px" width="200px"><h1>48 min</h1></li>
+  
+  </ul>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+   crossorigin="anonymous"></script>
+ <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script> 
+ <script type="text/javascript">
+
+$('.slider2').slick({
+  infinite: true,
+  slidesToShow: 4,
+  slidesToScroll: 1
+});
+</script>
+
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" 
+crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" 
+integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script type="text/javascript">
+$('.owl-carousel2').owlCarousel2({
+    loop:true,
+    margin:10,
+    nav:true,
+    responsive:{
+        0:{
+            items:1
+        },
+        600:{
+            items:3
+        },
+        1000:{
+            items:5
+        }
+    }
+})
+</script> -->
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+
+
+
+
+
+
+
+
+
+
+<!-- Best Food in Bengaluru -->
+<h1 id="delivery">Best Food in Bengaluru</h1><br/><br/>
+
+<div class="card-deck" id="test7">
+  <div class="card" >
+    <img src="https://b.zmtcdn.com/data/pictures/2/18414352/e7d3ecf07a9eec718cc7265300611177_o2_featured_v2.jpeg?output-format=webp" 
+    class="card-img-top" 
+    alt="..." height="257px">
+    <div class="card-body">
+      <div class="card-img-overlay">
+        <span class="badge badge-primary" style="margin-top:205px">30% OFF</span>
+    </div>
+      <span class="badge badge-pill badge-success" style="float: right;">3.8 <i class="fas fa-star"></i></span>
+      <h5 class="card-title">Donne Biriyani Angadi Mane</h5>  
+      <span class="card-text text-muted" style="float: right;">₹150 for one</span>
+      <p class="card-text text-muted">Biryani, South Indian</p>
+    </div>
+    <div class="card-footer">
+      <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner  bg-light">
+          <div class="carousel-item active  bg-light">
+              <small class="d-block w-100 text-muted" ><img src="https://static.thenounproject.com/png/185044-200.png" height="30px" width="50px">1775+ orders from here recently</small>
+          </div>
+          <div class="carousel-item  bg-light"> 
+            <small class="d-block w-100 text-muted" >Follows all max safety measures to ensure your food is safe<img src="https://b.zmtcdn.com/data/o2_assets/e50eb01feab6bd50e50430f34b4645ac1613542991.png" height="30px" width="50px" style="float: right;"></small> 
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <img src="https://b.zmtcdn.com/data/pictures/chains/9/59179/a27b0a7128ad0035df8c14fabf52cdef_o2_featured_v2.jpg?output-format=webp"
+     class="card-img-top" alt="...">
+     <div class="card-body"> 
+      <div class="card-img-overlay">
+        <span class="badge badge-primary" style="margin-top:205px">Everything @ ₹99 only</span>
+      </div>
+      <span class="badge badge-pill badge-success" style="float: right;">3.8 <i class="fas fa-star"></i></span>
+      <h5 class="card-title">FreshMenu</h5>  
+      <span class="card-text text-muted" style="float: right;">₹150 for one</span>
+      <p class="card-text text-muted">Continental, North Indian</p>
+    </div>
+    <div class="card-footer">
+      <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active bg-light">
+              <small class="d-block w-100 text-muted" ><img src="https://static.thenounproject.com/png/185044-200.png" height="30px" width="50px">1775+ orders from here recently</small>
+          </div>
+          <div class="carousel-item bg-light">
+            <small class="d-block w-100 text-muted" >Follows all max safety measures to ensure your food is safe<img src="https://b.zmtcdn.com/data/o2_assets/e50eb01feab6bd50e50430f34b4645ac1613542991.png" height="30px" width="50px" style="float: right;"></small>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    
+  <div class="card">
+    <img src="https://b.zmtcdn.com/data/pictures/4/19549844/71548db59cacc7306e62508e2076fa0d_o2_featured_v2.jpg?output-format=webp"
+     class="card-img-top" alt="...">
+     <div class="card-body">
+      <div class="card-img-overlay">
+        <span class="badge badge-primary" style="margin-top:205px">60% OFF</span>
+    </div>
+      <span class="badge badge-pill badge-success" style="float: right;">4.4 <i class="fas fa-star"></i></span>
+      <h5 class="card-title">Trattoria By Toscano</h5>  
+      <span class="card-text text-muted" style="float: right;">  ₹150 for one</span>
+      <p class="card-text text-muted text-truncate">Italian, Continental, Healthy Food, Desserts, Salad, Shake</p>
+    </div>
+    <div class="card-footer">
+      <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active  bg-light">
+              <small class="d-block w-100 text-muted " ><img src="https://static.thenounproject.com/png/185044-200.png" height="30px" width="50px"> 1775+ orders from here recently</small>
+          </div>
+          <div class="carousel-item  bg-light">
+            <small class="d-block w-100 text-muted " >Follows all max safety measures to ensure your food is safe<img src="https://b.zmtcdn.com/data/o2_assets/e50eb01feab6bd50e50430f34b4645ac1613542991.png" height="30px" width="50px" style="float: right;"></small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+ </div>
+
+ <br/><br/><br/><br/>
+
+<!-- 2 nd row -->
+ <div class="card-deck" id="test7">
+  <div class="card">
+    <img src="https://b.zmtcdn.com/data/pictures/chains/1/50691/92d9b4053ef0965120828b4fa4eecc3b_o2_featured_v2.jpg?output-format=webp" 
+    class="card-img-top" 
+    alt="..." height="257px">
+    <div class="card-body">
+      <div class="card-img-overlay">
+        <span class="badge badge-primary" style="margin-top:205px">60% OFF</span>
+    </div>
+      <span class="badge badge-pill badge-success" style="float: right;">3.6 <i class="fas fa-star"></i></span>
+      <h5 class="card-title">Imperio Restaurant</h5>  
+      <span class="card-text text-muted" style="float: right;">₹150 for one</span>
+      <p class="card-text text-muted">Biryani, North Indian</p>
+    </div>
+    <div class="card-footer">
+      <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner  bg-light">
+          <div class="carousel-item active  bg-light">
+              <small class="d-block w-100 text-muted" ><img src="https://static.thenounproject.com/png/185044-200.png" height="30px" width="50px">3775+ orders from here recently</small>
+          </div>
+          <div class="carousel-item  bg-light"> 
+            <small class="d-block w-100 text-muted" >Follows all max safety measures to ensure your food is safe<img src="https://b.zmtcdn.com/data/o2_assets/e50eb01feab6bd50e50430f34b4645ac1613542991.png" height="30px" width="50px" style="float: right;"></small> 
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <img src="https://b.zmtcdn.com/data/pictures/chains/1/50471/3238da54d036bc4a24c69309db215458_o2_featured_v2.jpg?output-format=webp"
+     class="card-img-top" alt="..." height="257px">
+     <div class="card-body"> 
+      <div class="card-img-overlay">
+        <span class="badge badge-primary" style="margin-top:205px">20% OFF</span>
+      </div>
+      <span class="badge badge-pill badge-success" style="float: right;">4.0 <i class="fas fa-star"></i></span>
+      <h5 class="card-title">Al-Bek</h5>  
+      <span class="card-text text-muted" style="float: right;">₹150 for one</span>
+      <p class="card-text text-muted">Mughlai, Arabian North Indian</p>
+    </div>
+    <div class="card-footer">
+      <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active bg-light">
+              <small class="d-block w-100 text-muted" ><img src="https://static.thenounproject.com/png/185044-200.png" height="30px" width="50px">8725+ orders from here recently</small>
+          </div>
+          <div class="carousel-item bg-light">
+            <small class="d-block w-100 text-muted" >Follows all max safety measures to ensure your food is safe<img src="https://b.zmtcdn.com/data/o2_assets/e50eb01feab6bd50e50430f34b4645ac1613542991.png" height="30px" width="50px" style="float: right;"></small>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    
+  <div class="card">
+    <img src="https://b.zmtcdn.com/data/pictures/chains/1/60551/5175748d41698e6eab456034fddc99b5_o2_featured_v2.jpg?output-format=webps"
+     class="card-img-top" alt="..." height="257px"> 
+     <div class="card-body">
+      <div class="card-img-overlay">
+        <span class="badge badge-primary" style="margin-top:205px">30% OFF</span>
+    </div>
+      <span class="badge badge-pill badge-success" style="float: right;">4.4 <i class="fas fa-star"></i></span>
+      <h5 class="card-title">Truffles</h5>  
+      <span class="card-text text-muted" style="float: right;">  ₹450 for one</span>
+      <p class="card-text text-muted text-truncate">Italian, Continental, Healthy Food, Desserts, Salad, Shake</p>
+    </div>
+    <div class="card-footer">
+      <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active  bg-light">
+              <small class="d-block w-100 text-muted " ><img src="https://static.thenounproject.com/png/185044-200.png" height="30px" width="50px"> 4775+ orders from here recently</small>
+          </div>
+          <div class="carousel-item  bg-light">
+            <small class="d-block w-100 text-muted " >Follows all max safety measures to ensure your food is safe<img src="https://b.zmtcdn.com/data/o2_assets/e50eb01feab6bd50e50430f34b4645ac1613542991.png" height="30px" width="50px" style="float: right;"></small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+ </div>
+
+ <br/><br/><br/><br/>
+
+<!-- 3rd row -->
+ <div class="card-deck" id="test7">
+  <div class="card">
+    <img src="https://b.zmtcdn.com/data/pictures/chains/9/19051939/17c4bc3c39020605a0357cf569028c9a_o2_featured_v2.jpg" 
+    class="card-img-top" 
+    alt="..." height="257px">
+    <div class="card-body">
+      <div class="card-img-overlay">
+        <span class="badge badge-primary" style="margin-top:205px">50% OFF</span>
+    </div>
+      <span class="badge badge-pill badge-success" style="float: right;">4.1 <i class="fas fa-star"></i></span>
+      <h5 class="card-title">Paakashala</h5>  
+      <span class="card-text text-muted" style="float: right;">₹100 for one</span>
+      <p class="card-text text-muted"> South Indian, North Indian</p>
+    </div>
+    <div class="card-footer">
+      <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner  bg-light">
+          <div class="carousel-item active  bg-light">
+              <small class="d-block w-100 text-muted" ><img src="https://static.thenounproject.com/png/185044-200.png" height="30px" width="50px">1400+ orders from here recently</small>
+          </div>
+          <div class="carousel-item  bg-light"> 
+            <small class="d-block w-100 text-muted" >Follows all max safety measures to ensure your food is safe<img src="https://b.zmtcdn.com/data/o2_assets/e50eb01feab6bd50e50430f34b4645ac1613542991.png" height="30px" width="50px" style="float: right;"></small> 
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <img src="https://b.zmtcdn.com/data/pictures/4/19535924/ab7b24ccae3af976ea61431e222c8b10_o2_featured_v2.jpg"
+     class="card-img-top" alt="..." height="257px">
+     <div class="card-body"> 
+      <div class="card-img-overlay">
+        <span class="badge badge-primary" style="margin-top:205px">60% OFF</span>
+      </div>
+      <span class="badge badge-pill badge-success" style="float: right;">3.9 <i class="fas fa-star"></i></span>
+      <h5 class="card-title">No.10 Fort Cochin</h5>  
+      <span class="card-text text-muted" style="float: right;">₹150 for one</span>
+      <p class="card-text text-muted">Seafood, Kerala, Biryani</p>
+    </div>
+    <div class="card-footer">
+      <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active bg-light">
+              <small class="d-block w-100 text-muted" ><img src="https://static.thenounproject.com/png/185044-200.png" height="30px" width="50px">2855+ orders from here recently</small>
+          </div>
+          <div class="carousel-item bg-light">
+            <small class="d-block w-100 text-muted" >Follows all max safety measures to ensure your food is safe<img src="https://b.zmtcdn.com/data/o2_assets/e50eb01feab6bd50e50430f34b4645ac1613542991.png" height="30px" width="50px" style="float: right;"></small>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    
+  <div class="card" id="test7">
+    <img src="https://b.zmtcdn.com/data/pictures/8/51828/b56d9e9d36510cc89c31f611ab79ac4f_o2_featured_v2.jpg"
+     class="card-img-top" alt="..." height="257px">
+     <div class="card-body">
+      <div class="card-img-overlay">
+        <span class="badge badge-primary" style="margin-top:205px">30% OFF</span>
+    </div>
+      <span class="badge badge-pill badge-success" style="float: right;">3.9 <i class="fas fa-star"></i></span>
+      <h5 class="card-title">Tarbouche</h5>  
+      <span class="card-text text-muted" style="float: right;">  ₹150 for one</span>
+      <p class="card-text text-muted text-truncate">Rolls,Middle Eastern</p>
+    </div>
+    <div class="card-footer">
+      <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active  bg-light">
+              <small class="d-block w-100 text-muted " ><img src="https://static.thenounproject.com/png/185044-200.png" height="30px" width="50px"> 1025+ orders from here recently</small>
+          </div>
+          <div class="carousel-item  bg-light">
+            <small class="d-block w-100 text-muted " >Follows all max safety measures to ensure your food is safe<img src="https://b.zmtcdn.com/data/o2_assets/e50eb01feab6bd50e50430f34b4645ac1613542991.png" height="30px" width="50px" style="float: right;"></small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+ </div>
+
+ <br/><br/><br/><br/>
+ 
+<!-- 3rd row -->
+ <div class="card-deck" id="test7">
+  <div class="card">
+    <img src="https://b.zmtcdn.com/data/pictures/5/57325/6facf7eb7abfbdc719518d588880877e_o2_featured_v2.jpg" 
+    class="card-img-top" 
+    alt="..." height="257px">
+    <div class="card-body">
+      <div class="card-img-overlay">
+        <span class="badge badge-primary" style="margin-top:205px">40% OFF</span>
+    </div>
+      <span class="badge badge-pill badge-success" style="float: right;">4.0 <i class="fas fa-star"></i></span>
+      <h5 class="card-title">Szechuan Dragon</h5>  
+      <span class="card-text text-muted" style="float: right;">₹200 for one</span>
+      <p class="card-text text-muted">Chinese, Asian, Thai </p>
+    </div>
+    <div class="card-footer">
+      <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner  bg-light">
+          <div class="carousel-item active  bg-light">
+              <small class="d-block w-100 text-muted" ><img src="https://static.thenounproject.com/png/185044-200.png" height="30px" width="50px">9400+ orders from here recently</small>
+          </div>
+          <div class="carousel-item  bg-light"> 
+            <small class="d-block w-100 text-muted" >Follows all max safety measures to ensure your food is safe<img src="https://b.zmtcdn.com/data/o2_assets/e50eb01feab6bd50e50430f34b4645ac1613542991.png" height="30px" width="50px" style="float: right;"></small> 
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <img src="https://b.zmtcdn.com/data/pictures/chains/0/59840/81a13f2fb07ceb539a66bd2a0fa19cc5_o2_featured_v2.jpg"
+     class="card-img-top" alt="..." height="257px"> 
+     <div class="card-body"> 
+      <div class="card-img-overlay">
+        <span class="badge badge-primary" style="margin-top:205px">60% OFF</span>
+      </div>
+      <span class="badge badge-pill badge-success" style="float: right;">3.3 <i class="fas fa-star"></i></span>
+      <h5 class="card-title">Onesta</h5>  
+      <span class="card-text text-muted" style="float: right;">₹200 for one</span>
+      <p class="card-text text-muted">Pizza, Pasta, Fast Food</p>
+    </div>
+    <div class="card-footer">
+      <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active bg-light">
+              <small class="d-block w-100 text-muted" ><img src="https://static.thenounproject.com/png/185044-200.png" height="30px" width="50px">4175+ orders from here recently</small>
+          </div>
+          <div class="carousel-item bg-light">
+            <small class="d-block w-100 text-muted" >Follows all max safety measures to ensure your food is safe<img src="https://b.zmtcdn.com/data/o2_assets/e50eb01feab6bd50e50430f34b4645ac1613542991.png" height="30px" width="50px" style="float: right;"></small>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    
+  <div class="card">
+    <img src="https://b.zmtcdn.com/data/pictures/chains/1/58271/ea3044ec553419682e64b98fd9340831_o2_featured_v2.jpg"
+     class="card-img-top" alt="..." height="257px">
+     <div class="card-body">
+      <div class="card-img-overlay">
+        <span class="badge badge-primary" style="margin-top:205px">Flat 10% OFF</span>
+    </div>
+      <span class="badge badge-pill badge-success" style="float: right;">4.2 <i class="fas fa-star"></i></span>
+      <h5 class="card-title">Thyme & Whisk</h5>  
+      <span class="card-text text-muted" style="float: right;">  ₹200 for one</span>
+      <p class="card-text text-muted text-truncate">Asian, North Indian, Chinese</p>
+    </div>
+    <div class="card-footer">
+      <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active  bg-light">
+              <small class="d-block w-100 text-muted " ><img src="https://static.thenounproject.com/png/185044-200.png" height="30px" width="50px"> 1775+ orders from here recently</small>
+          </div>
+          <div class="carousel-item  bg-light">
+            <small class="d-block w-100 text-muted " >Follows all max safety measures to ensure your food is safe<img src="https://b.zmtcdn.com/data/o2_assets/e50eb01feab6bd50e50430f34b4645ac1613542991.png" height="30px" width="50px" style="float: right;"></small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+ </div>
+
+ <br/><br/><br/><br/>
+
+<!-- 4th row -->
+ <div class="card-deck" id="test7">
+  <div class="card">
+    <img src="https://b.zmtcdn.com/data/pictures/chains/2/50112/fe166085ab7d8d4b5f8ba7c0e4fc40ba_o2_featured_v2.jpg" 
+    class="card-img-top" 
+    alt="..." height="257px">
+    <div class="card-body">
+      <div class="card-img-overlay">
+        <span class="badge badge-primary" style="margin-top:205px">60% OFF</span>
+    </div>
+      <span class="badge badge-pill badge-success" style="float: right;">3.6 <i class="fas fa-star"></i></span>
+      <h5 class="card-title">Sardarji Londonwaley</h5>  
+      <span class="card-text text-muted" style="float: right;">₹200 for one</span>
+      <p class="card-text text-muted">Biryani, North Indian</p>
+    </div>
+    <div class="card-footer">
+      <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner  bg-light">
+          <div class="carousel-item active  bg-light">
+              <small class="d-block w-100 text-muted" ><img src="https://static.thenounproject.com/png/185044-200.png" height="30px" width="50px">8555+ orders from here recently</small>
+          </div>
+          <div class="carousel-item  bg-light"> 
+            <small class="d-block w-100 text-muted" >Follows all max safety measures to ensure your food is safe<img src="https://b.zmtcdn.com/data/o2_assets/e50eb01feab6bd50e50430f34b4645ac1613542991.png" height="30px" width="50px" style="float: right;"></small> 
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <img src="https://b.zmtcdn.com/data/pictures/chains/2/50502/7a0aa9db2460a1da9d8dd346ad732c4e_o2_featured_v2.jpg"
+     class="card-img-top" alt="..." height="257px">
+     <div class="card-body"> 
+      <div class="card-img-overlay">
+        <span class="badge badge-primary" style="margin-top:205px">50% OFF</span>
+      </div>
+      <span class="badge badge-pill badge-success" style="float: right;">3.6 <i class="fas fa-star"></i></span>
+      <h5 class="card-title">New Alameen Restaurant</h5>  
+      <span class="card-text text-muted" style="float: right;">₹200 for one</span>
+      <p class="card-text text-muted">North Indian, Kerala </p>
+    </div>
+    <div class="card-footer">
+      <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active bg-light">
+              <small class="d-block w-100 text-muted" ><img src="https://static.thenounproject.com/png/185044-200.png" height="30px" width="50px">3005+ orders from here recently</small>
+          </div>
+          <div class="carousel-item bg-light">
+            <small class="d-block w-100 text-muted" >Follows all max safety measures to ensure your food is safe<img src="https://b.zmtcdn.com/data/o2_assets/e50eb01feab6bd50e50430f34b4645ac1613542991.png" height="30px" width="50px" style="float: right;"></small>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    
+  <div class="card">
+    <img src="https://b.zmtcdn.com/data/pictures/chains/8/18489118/a39228f63559b763c6928e91fbdf4942_o2_featured_v2.jpg"
+     class="card-img-top" alt="..." height="257px">
+     <div class="card-body">
+      <div class="card-img-overlay">
+        <span class="badge badge-primary" style="margin-top:205px">40% OFF</span>
+    </div>
+      <span class="badge badge-pill badge-success" style="float: right;">4.0 <i class="fas fa-star"></i></span>
+      <h5 class="card-title">Roti Wala</h5>  
+      <span class="card-text text-muted" style="float: right;">  ₹200 for one</span>
+      <p class="card-text text-muted text-truncate">North Indian, Fast Food </p>
+    </div>
+    <div class="card-footer">
+      <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active  bg-light">
+              <small class="d-block w-100 text-muted " ><img src="https://static.thenounproject.com/png/185044-200.png" height="30px" width="50px"> 1775+ orders from here recently</small>
+          </div>
+          <div class="carousel-item  bg-light">
+            <small class="d-block w-100 text-muted " >Follows all max safety measures to ensure your food is safe<img src="https://b.zmtcdn.com/data/o2_assets/e50eb01feab6bd50e50430f34b4645ac1613542991.png" height="30px" width="50px" style="float: right;"></small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+ </div>
+
+ <br/><br/><br/><br/>
+<!-- 5 th row -->
+ <div class="card-deck" id="test7">
+  <div class="card">
+    <img src="https://b.zmtcdn.com/data/pictures/1/19674161/1805afa4a11c54975b59c8ed926fbdf7_o2_featured_v2.jpg" 
+    class="card-img-top" 
+    alt="..." height="257px">
+    <div class="card-body">
+      <div class="card-img-overlay">
+        <span class="badge badge-primary" style="margin-top:205px">30% OFF</span>
+    </div>
+      <span class="badge badge-pill badge-success" style="float: right;">3.9 <i class="fas fa-star"></i></span>
+      <h5 class="card-title">Marwadi Tiffin Services</h5>  
+      <span class="card-text text-muted" style="float: right;">₹200 for one</span>
+      <p class="card-text text-muted">North Indian,South Indian</p>
+    </div>
+    <div class="card-footer">
+      <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner  bg-light">
+          <div class="carousel-item active  bg-light">
+              <small class="d-block w-100 text-muted" ><img src="https://static.thenounproject.com/png/185044-200.png" height="30px" width="50px">1455+ orders from here recently</small>
+          </div>
+          <div class="carousel-item  bg-light"> 
+            <small class="d-block w-100 text-muted" >Follows all max safety measures to ensure your food is safe<img src="https://b.zmtcdn.com/data/o2_assets/e50eb01feab6bd50e50430f34b4645ac1613542991.png" height="30px" width="50px" style="float: right;"></small> 
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <img src="https://b.zmtcdn.com/data/pictures/chains/8/50628/f72101d8dfd889fe9d5d66b024f57147_o2_featured_v2.jpg"
+     class="card-img-top" alt="..." height="257px">
+     <div class="card-body"> 
+      <div class="card-img-overlay">
+        <span class="badge badge-primary" style="margin-top:205px">Everything @ ₹99 only</span>
+      </div>
+      <span class="badge badge-pill badge-success" style="float: right;">4.4 <i class="fas fa-star"></i></span>
+      <h5 class="card-title">99 varieties of Dosa</h5>  
+      <span class="card-text text-muted" style="float: right;">₹99 for one</span>
+      <p class="card-text text-muted">South Indian</p>
+    </div>
+    <div class="card-footer">
+      <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active bg-light">
+              <small class="d-block w-100 text-muted" ><img src="https://static.thenounproject.com/png/185044-200.png" height="30px" width="50px">1775+ orders from here recently</small>
+          </div>
+          <div class="carousel-item bg-light">
+            <small class="d-block w-100 text-muted" >Follows all max safety measures to ensure your food is safe<img src="https://b.zmtcdn.com/data/o2_assets/e50eb01feab6bd50e50430f34b4645ac1613542991.png" height="30px" width="50px" style="float: right;"></small>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    
+  <div class="card">
+    <img src="https://b.zmtcdn.com/data/pictures/8/19611858/5dc7ba65e57c60b6ef5827e6a9acb445_o2_featured_v2.jpg"
+     class="card-img-top" alt="..." height="257px">
+     <div class="card-body">
+      <div class="card-img-overlay">
+        <span class="badge badge-primary" style="margin-top:205px">60% OFF</span>
+    </div>
+      <span class="badge badge-pill badge-success" style="float: right;">4.0 <i class="fas fa-star"></i></span>
+      <h5 class="card-title">Cafe 60 Flour</h5>  
+      <span class="card-text text-muted" style="float: right;">  ₹150 for one</span>
+      <p class="card-text text-muted text-truncate">Italian, Continental, Healthy Food, Desserts, Salad, Shake</p>
+    </div>
+    <div class="card-footer">
+      <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active  bg-light">
+              <small class="d-block w-100 text-muted " ><img src="https://static.thenounproject.com/png/185044-200.png" height="30px" width="50px"> 1875+ orders from here recently</small>
+          </div>
+          <div class="carousel-item  bg-light">
+            <small class="d-block w-100 text-muted " >Follows all max safety measures to ensure your food is safe<img src="https://b.zmtcdn.com/data/o2_assets/e50eb01feab6bd50e50430f34b4645ac1613542991.png" height="30px" width="50px" style="float: right;"></small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+ </div>
+
+ <br/><br/><br/><br/>
+<!-- 6th row -->
+ <div class="card-deck" id="test7">
+  <div class="card">
+    <img src="https://b.zmtcdn.com/data/pictures/chains/5/61555/9f2f843523d0e8b9ecd9ee9ee32c1c46_o2_featured_v2.jpg" 
+    class="card-img-top" 
+    alt="..." height="257px">
+    <div class="card-body">
+      <div class="card-img-overlay">
+        <span class="badge badge-primary" style="margin-top:205px">30% OFF</span>
+    </div>
+      <span class="badge badge-pill badge-success" style="float: right;">4.0 <i class="fas fa-star"></i></span>
+      <h5 class="card-title">Burger King</h5>  
+      <span class="card-text text-muted" style="float: right;">₹150 for one</span>
+      <p class="card-text text-muted">Italian, Continental, Desserts</p>
+    </div>
+    <div class="card-footer">
+      <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner  bg-light">
+          <div class="carousel-item active  bg-light">
+              <small class="d-block w-100 text-muted" ><img src="https://static.thenounproject.com/png/185044-200.png" height="30px" width="50px">5775+ orders from here recently</small>
+          </div>
+          <div class="carousel-item  bg-light"> 
+            <small class="d-block w-100 text-muted" >Follows all max safety measures to ensure your food is safe<img src="https://b.zmtcdn.com/data/o2_assets/e50eb01feab6bd50e50430f34b4645ac1613542991.png" height="30px" width="50px" style="float: right;"></small> 
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <img src="https://b.zmtcdn.com/data/pictures/6/61476/20b6b3d99c7a8444e4b11f45a8dca253_o2_featured_v2.jpg"
+     class="card-img-top" alt="..." height="257px">
+     <div class="card-body"> 
+      <div class="card-img-overlay">
+        <span class="badge badge-primary" style="margin-top:205px">Flat 50% OFF</span>
+      </div>
+      <span class="badge badge-pill badge-success" style="float: right;">3.8 <i class="fas fa-star"></i></span>
+      <h5 class="card-title">FishMenu</h5>  
+      <span class="card-text text-muted" style="float: right;">₹150 for one</span>
+      <p class="card-text text-muted">Kerala, South Indian</p>
+    </div>
+    <div class="card-footer">
+      <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active bg-light">
+              <small class="d-block w-100 text-muted" ><img src="https://static.thenounproject.com/png/185044-200.png" height="30px" width="50px">775+ orders from here recently</small>
+          </div>
+          <div class="carousel-item bg-light">
+            <small class="d-block w-100 text-muted" >Follows all max safety measures to ensure your food is safe<img src="https://b.zmtcdn.com/data/o2_assets/e50eb01feab6bd50e50430f34b4645ac1613542991.png" height="30px" width="50px" style="float: right;"></small>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    
+  <div class="card">
+    <img src="https://b.zmtcdn.com/data/pictures/chains/0/59840/81a13f2fb07ceb539a66bd2a0fa19cc5_o2_featured_v2.jpg"
+     class="card-img-top" alt="..." height="257px">
+     <div class="card-body">
+      <div class="card-img-overlay">
+        <span class="badge badge-primary" style="margin-top:205px">20% OFF</span>
+    </div>
+      <span class="badge badge-pill badge-success" style="float: right;">4.3 <i class="fas fa-star"></i></span>
+      <h5 class="card-title">California Burrito</h5>  
+      <span class="card-text text-muted" style="float: right;">  ₹350 for one</span>
+      <p class="card-text text-muted text-truncate">Mexican, Fast Food</p>
+    </div>
+    <div class="card-footer">
+      <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active  bg-light">
+              <small class="d-block w-100 text-muted " ><img src="https://static.thenounproject.com/png/185044-200.png" height="30px" width="50px"> 3775+ orders from here recently</small>
+          </div>
+          <div class="carousel-item  bg-light">
+            <small class="d-block w-100 text-muted " >Follows all max safety measures to ensure your food is safe<img src="https://b.zmtcdn.com/data/o2_assets/e50eb01feab6bd50e50430f34b4645ac1613542991.png" height="30px" width="50px" style="float: right;"></small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+ </div>
+
+ <br/><br/><br/><br/>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Explore the option -->
+<p class="font-weight-bolder lead" style="font-size: 30px;" >Explore other options for you here</p>
+<p class="lead font-weight-bolder " id="Dining">Popular cuisines near me</p> 
+<ul class=" mt-3 " id="test1">
+  
+   <a href="#!" class="text-reset text-muted lead">Andhra food near me •</a>
+   <a href="#!" class="text-reset text-muted lead">Bakery food near me •</a>
+    <a href="#!" class="text-reset text-muted lead">Beverages food near me •</a>
+    <a href="#!" class="text-reset text-muted lead"> Biryani food near me •</a>
+    <a href="#!" class="text-reset text-muted lead">Burger food near me •</a>
+    <a href="#!" class="text-reset text-muted lead">Chinese food near me •</a>
+     <a href="#!" class="text-reset text-muted lead">Continental food near me •</a>
+    <a href="#!" class="text-reset text-muted lead">Desserts food near me •</a>
+    <a href="#!" class="text-reset text-muted lead">Ice Cream food near me •</a>
+    <a href="#!" class="text-reset text-muted lead">Juices food near me •</a>
+   <a href="#!" class="text-reset text-muted lead">Kebab food near me •</a>
+   <a href="#!" class="text-reset text-muted lead">Mughlai food near me •</a>
+    <a href="#!" class="text-reset text-muted lead">North Indian food near me •</a>
+   <a href="#!" class="text-reset text-muted lead">Pizza food near me •</a>
+    <a href="#!" class="text-reset text-muted lead">Rolls food near me •</a>
+   <a href="#!" class="text-reset text-muted lead">Sandwich food near me •</a>
+   <a href="#!" class="text-reset text-muted lead">Seafood food near me •</a>
+   <a href="#!" class="text-reset text-muted lead"> Shake food near me •</a>
+   <a href="#!" class="text-reset text-muted lead">South Indian food near me •</a>
+   <a href="#!" class="text-reset text-muted lead">Street food near me </a>
+     
+<br/>
+<br/>
+<br>
+<br>
+
+<!-- Popular restaurant types near me -->
+
+
+    <p class="lead font-weight-bolder" id="Night">Popular restaurant types near me</p>
+
+     <a href="#!" class="text-reset text-muted lead">Bakeries near me •</a>
+    <a href="#!" class="text-reset text-muted lead">Bars near me •</a>
+    <a href="#!" class="text-reset text-muted lead">Beverage Shops near me •</a>
+    <a href="#!" class="text-reset text-muted lead"> Bhojanalya near me •</a>
+    <a href="#!" class="text-reset text-muted lead">Cafés near me •</a>
+    <a href="#!" class="text-reset text-muted lead">Casual Dining near me •</a>
+    <a href="#!" class="text-reset text-muted lead">Clubs near me •</a>
+    <a href="#!" class="text-reset text-muted lead">Confectioneries near me •</a>
+    <a href="#!" class="text-reset text-muted lead">Dessert Parlors near me •</a>
+    <a href="#!" class="text-reset text-muted lead">Dhabas near me •</a>
+   <a href="#!" class="text-reset text-muted lead">Fine Dining near me •</a>
+  <a href="#!" class="text-reset text-muted lead">Food Courts near me •</a>
+   <a href="#!" class="text-reset text-muted lead">Food Trucks near me •</a>
+  <a href="#!" class="text-reset text-muted lead">Kiosks near me •</a>
+    <a href="#!" class="text-reset text-muted lead">Lounges near me •</a>
+   <a href="#!" class="text-reset text-muted lead">Meat Shops near me •</a>
+  <a href="#!" class="text-reset text-muted lead">Microbreweries near me •</a>
+   <a href="#!" class="text-reset text-muted lead"> Paan Shop near me •</a>
+   <a href="#!" class="text-reset text-muted lead">Quick Bites near me •</a>
+   <a href="#!" class="text-reset text-muted lead">Sweet Shops near me </a>
+ 
+   <br/>
+   <br/>
+   <br>
+   <br>
+   
+
+   <!-- Top Restaurant Chains -->
+   <p class="lead font-weight-bolder  ">Top Restaurant Chains</p>
+   <div class="row row-cols-5">
+    <div class="col"><a href="#!" class="text-reset">Bikanervala </a></div>
+    <div class="col"> <a href="#!" class="text-reset">Biryani Blues </a></div>
+    <div class="col"> <a href="#!" class="text-reset">Burger King</a></div>
+    <div class="col"> <a href="#!" class="text-reset">Domino's</a></div>
+    <div class="col"> <a href="#!" class="text-reset">Dunkin' Donuts </a></div>
+  </div>
+  <div class="row row-cols-5">
+    <div class="col"><a href="#!" class="text-reset">Haldiram's  </a></div>
+    <div class="col"> <a href="#!" class="text-reset">KFC </a></div>
+    <div class="col"> <a href="#!" class="text-reset">McDonald's </a></div>
+    <div class="col"> <a href="#!" class="text-reset">Pizza Hut</a></div>
+    <div class="col"> <a href="#!" class="text-reset">Sagar Ratna</a></div>
+  </div>
+
+  <br/>
+  <br/>
+  
+  <br>
+  <br>
+  
+
+  <!-- Cities We Deliver To -->
+  <p class="lead font-weight-bolder mt-3 ">Cities We Deliver To</p>
+  <div class="row row-cols-5">
+    <div class="col"><a href="#!" class="text-reset">Delhi NCR  </a></div>
+    <div class="col"> <a href="#!" class="text-reset">Kolkata</a></div>
+    <div class="col"> <a href="#!" class="text-reset">Mumbai</a></div>
+    <div class="col"> <a href="#!" class="text-reset">Bengaluru</a></div>
+    <div class="col"> <a href="#!" class="text-reset">Pune</a></div>
+  </div>
+
+  <div class="row row-cols-5">
+    <div class="col"><a href="#!" class="text-reset">Hyderabad</a></div>
+    <div class="col"> <a href="#!" class="text-reset">Chennai</a></div>
+    <div class="col"> <a href="#!" class="text-reset">Lucknow</a></div>
+    <div class="col"> <a href="#!" class="text-reset">Kochi</a></div>
+    <div class="col"> <a href="#!" class="text-reset">Jaipur</a></div>
+  </div>
+
+  <div class="row row-cols-5">
+    <div class="col"><a href="#!" class="text-reset"> Ahmedabad</a></div>
+    <div class="col"> <a href="#!" class="text-reset">Chandigarh</a></div>
+    <div class="col"> <a href="#!" class="text-reset">Goa</a></div>
+    <div class="col"> <a href="#!" class="text-reset">Indore</a></div>
+    <div class="col"> <a href="#!" class="text-reset">Nashik</a></div>
+  </div>
+
+  <div class="row row-cols-5">
+    <div class="col"><a href="#!" class="text-reset">Ooty </a></div>
+    <div class="col"> <a href="#!" class="text-reset">Shimla</a></div>
+    <div class="col"> <a href="#!" class="text-reset">Ludhiana</a></div>
+    <div class="col"> <a href="#!" class="text-reset">Guwahati</a></div>
+    <div class="col"> <a href="#!" class="text-reset">Amritsar</a></div>
+  </div>
+
+  <div class="row row-cols-5">
+    <div class="col"><a href="#!" class="text-reset">Kanpur </a></div>
+    <div class="col"> <a href="#!" class="text-reset">Allahabad</a></div>
+    <div class="col"> <a href="#!" class="text-reset">Aurangabad</a></div>
+    <div class="col"> <a href="#!" class="text-reset">Bhopal</a></div>
+    <div class="col"> <a href="#!" class="text-reset">Ranchi </a></div>
+  </div>
+
+  <div class="row row-cols-5">
+    <div class="col"><a href="#!" class="text-reset">Visakhapatnam</a></div>
+    <div class="col"> <a href="#!" class="text-reset">Bhubaneswar</a></div>
+    <div class="col"> <a href="#!" class="text-reset">Coimbatore</a></div>
+    <div class="col"> <a href="#!" class="text-reset">Mangalore</a></div>
+    <div class="col"> <a href="#!" class="text-reset">Vadodara </a></div>
+  </div>
+
+  <div class="row row-cols-5">
+    <div class="col"><a href="#!" class="text-reset">Nagpur </a></div>
+    <div class="col"> <a href="#!" class="text-reset">Agra</a></div>
+    <div class="col"> <a href="#!" class="text-reset">Dehradun</a></div>
+    <div class="col"> <a href="#!" class="text-reset">Mysore</a></div>
+    <div class="col"> <a href="#!" class="text-reset">Puducherry </a></div>
+  </div>
+
+  <div class="row row-cols-5">
+    <div class="col"><a href="#!" class="text-reset">Surat</a></div>
+    <div class="col"> <a href="#!" class="text-reset">Varanasi</a></div>
+    <div class="col"> <a href="#!" class="text-reset">Patna</a></div>
+    <div class="col"> <a href="#!" class="text-reset">Udaipur</a></div>
+    <div class="col"> <a href="#!" class="text-reset">Cuttack </a></div>
+  </div>
+
+  <div class="row row-cols-5">
+    <div class="col"><a href="#!" class="text-reset">Trivandrum  </a></div>
+    <div class="col"> <a href="#!" class="text-reset">Haridwar</a></div>
+    <div class="col"> <a href="#!" class="text-reset">Leh</a></div>
+    <div class="col"> <a href="#!" class="text-reset">Pushkar</a></div>
+    <div class="col"> <a href="#!" class="text-reset">Rajkot</a></div>
+  </div>
+
+  <div class="row row-cols-5">
+    <div class="col"><a href="#!" class="text-reset">Madurai</a></div>
+    <div class="col"> <a href="#!" class="text-reset">Kozhikode</a></div>
+    <div class="col"> <a href="#!" class="text-reset">Alappuzha</a></div>
+    <div class="col"> <a href="#!" class="text-reset">Thrissur</a></div>
+    <div class="col"> <a href="#!" class="text-reset">Manipal</a></div>
+  </div>
+
+  <div class="row row-cols-5">
+    <div class="col"><a href="#!" class="text-reset">Vijayawada </a></div>
+    <div class="col"> <a href="#!" class="text-reset">Jodhpur</a></div>
+    <div class="col"> <a href="#!" class="text-reset">Kota</a></div>
+    <div class="col"> <a href="#!" class="text-reset">Ajmer</a></div>
+    <div class="col"> <a href="#!" class="text-reset">Mussoorie</a></div>
+  </div>
+
+  <div class="row row-cols-5">
+    <div class="col"><a href="#!" class="text-reset">Rishikesh</a></div>
+    <div class="col"> <a href="#!" class="text-reset">Jalandhar</a></div>
+    <div class="col"> <a href="#!" class="text-reset">Jammu</a></div>
+    <div class="col"> <a href="#!" class="text-reset">Manali</a></div>
+    <div class="col"> <a href="#!" class="text-reset">Dharamshala </a></div>
+  </div>
+
+  <div class="row row-cols-5">
+    <div class="col"><a href="#!" class="text-reset">Raipura</a></div>
+    <div class="col"> <a href="#!" class="text-reset">GorakhpurP</a></div>
+    <div class="col"> <a href="#!" class="text-reset">lakkad</a></div>
+    <!-- <div class="col"> <a href="#!" class="text-reset">See more</a></div> -->
+
+  </div>
+
+ 
+
+</ul>
+
+</ul>
+<br>
+<br>
+<br>
+<br>
+
+
+
+
+
+<!-- Footer -->
+
+<footer class=" text-lg-start bg-light text-muted mt-2">
+    <!-- Section: Social media -->
+    <section
+      class="d-flex justify-content-lg-between p-4 border-bottom"
+    >
+      <!-- Left -->
+      <div class="me-5 d-none d-lg-block" style="margin-left: 3px;"> 
+        <span class="h1">pomato</span>
+      </div>
+
+
+      <div class="dropdown me-5 d-none d-lg-block " style="float:center;" >
+        <button class="btn btn-light border-dark dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <img src="https://cdn.iconscout.com/icon/free/png-256/india-flag-country-nation-union-empire-32988.png" height="35px" width="35px"> India
+        </button>
+        <div class="dropdown-menu " aria-labelledby="dropdownMenu2">
+          <div class="row row-cols-4 ">
+          <button class="dropdown-item col" type="button">India</button>
+          <button class="dropdown-item col" type="button">Australia</button>
+          <button class="dropdown-item col" type="button">Brazil</button>
+          <button class="dropdown-item col" type="button">Canada</button>
+        </div>
+
+        <div class="row row-cols-4 ">
+          <button class="dropdown-item col" type="button">Chile</button>
+          <button class="dropdown-item col" type="button">CzechR</button>
+          <button class="dropdown-item col" type="button">Indonesia</button>
+          <button class="dropdown-item col" type="button">Ireland</button>
+        </div>
+
+        <div class="row row-cols-4">
+          <button class="dropdown-item col" type="button">Italy</button>
+          <button class="dropdown-item col" type="button">Lebanon</button>
+          <button class="dropdown-item col" type="button">Malaysia</button>
+          <button class="dropdown-item col" type="button">NZ</button>
+        </div>
+
+        <div class="row row-cols-4">
+          <button class="dropdown-item col" type="button">Philippines</button>
+          <button class="dropdown-item col" type="button">Poland</button>
+          <button class="dropdown-item col" type="button">Portugal</button>
+          <button class="dropdown-item col" type="button">Qatar</button>
+        </div>
+
+        <div class="row row-cols-4">
+          <button class="dropdown-item col" type="button">Singapore</button>
+          <button class="dropdown-item col" type="button">Slovakia</button>
+          <button class="dropdown-item col" type="button">SA</button>
+          <button class="dropdown-item col" type="button">SL</button>
+        </div>
+
+        <div class="row row-cols-4">
+          <button class="dropdown-item col" type="button">Turkey</button>
+          <button class="dropdown-item col" type="button">UAE</button>
+          <button class="dropdown-item col" type="button">UK</button>
+          <button class="dropdown-item col" type="button">USA</button>
+        </div>
+      </div>
+
+      <div class="dropdown me-5 d-none d-lg-block" style="margin-left: 250px;">
+        <button class="btn btn-light border-dark dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-globe"></i> English
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+          <button class="dropdown-item" type="button">Portugues (PT)</button>
+          <button class="dropdown-item" type="button">Espanol</button>
+          <button class="dropdown-item" type="button">Cestina</button>
+          <button class="dropdown-item" type="button">Slovencina</button>
+          <button class="dropdown-item" type="button">Polish</button>
+          <button class="dropdown-item" type="button">Italian</button>
+          <button class="dropdown-item" type="button">Vietnamese</button>
+        </div>
+      </div>
+
+<!-- dropdown jquery -->
+      <script src="./jquery.js"></script>
+      <script src="./bootstrap-4.6.0-dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+
+
+
+
+
+
+      <!-- Left -->
+    </section>
+    <!-- Section: Social media -->
+  
+    <!-- Section: Links  -->
+    <section class="">
+      <div class="container text-md-start mt-5">
+        <!-- Grid row -->
+        <div class="row mt-3">
+          <!-- Grid column -->
+          <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+            <!-- Content -->
+            <h6 class="text-uppercase fw-bold mb-4">
+              COMPANY
+            </h6>      
+            <p>
+                <a href="#!" class="text-reset">Who We Are</a>
+            </p>
+            <p>
+                <a href="#!" class="text-reset">Blog</a>
+            </p>
+            <p>
+                <a href="#!" class="text-reset">Careers</a>
+            </p>
+            <p>
+                <a href="#!" class="text-reset">Report Fraud</a>
+            </p>
+            <p>
+                <a href="#!" class="text-reset">Contact</a>
+            </p>
+            <p>
+                <a href="#!" class="text-reset">Investor Relations</a>
+            </p>
+
+          </div>
+          <!-- Grid column -->
+  
+          <!-- Grid column -->
+          <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+            <!-- Links -->
+            <h6 class="text-uppercase fw-bold mb-4 ">
+              For foodies
+            </h6>
+            <p>
+              <a href="#!" class="text-reset">Code of Conduct</a>
+            </p>
+            <p>
+              <a href="#!" class="text-reset">Community</a>
+            </p>
+            <p>
+              <a href="#!" class="text-reset">Blogger Help</a>
+            </p>
+            <p>
+              <a href="#!" class="text-reset">Mobile Apps</a>
+            </p>
+          </div>
+          <!-- Grid column -->
+  
+          <!-- Grid column -->
+          <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+            <!-- Links -->
+            <h6 class="text-uppercase fw-bold mb-4">
+              For restaurants
+            </h6>
+            <p>
+              <a href="#!" class="text-reset">Add restaurant</a>
+            </p>
+          </div>
+          <!-- Grid column -->
+  
+          <!-- Grid column -->
+          <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+            <!-- Links -->
+            <h6 class="text-uppercase fw-bold mb-4">
+              For you
+            </h6>
+            <p>
+                <a href="#!" class="text-reset">Privacy</a>
+            </p>
+            <p>
+                <a href="#!" class="text-reset">Terms</a>
+            </p>
+            <p>
+                <a href="#!" class="text-reset">Security</a>
+            </p>
+            <p>
+                <a href="#!" class="text-reset">Sitemap</a>
+            </p>
+          </div>
+          <!-- Grid column -->
+
+           <!-- Grid column -->
+           <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+            <!-- Links -->
+            <h6 class="text-uppercase fw-bold mb-4">
+              Social links
+            </h6>
+            <p>
+               <a href="" class="me-4 text-reset"> <i class="fab fa-facebook"></i></a>
+               <a href="" class="me-4 text-reset"><i class="fab fa-twitter-square"></i></a>
+                <a href="" class="me-4 text-reset"> <i class="fab fa-instagram-square"></i></a>
+            </p>
+            <p>
+                <a href="#"><img src="https://thumbs.dreamstime.com/b/download-app-store-get-google-play-button-icons-vector-illustration-october-201439380.jpg" height="100px" width="130px"/>
+                </a> </p>
+          </div>
+          <!-- Grid column -->
+
+
+
+        </div>
+        <!-- Grid row -->
+      </div>
+    </section>
+    <!-- Section: Links  -->
+  
+    <!-- Copyright -->
+    <hr>
+    <div ><p> By continuing past this page, you agree to our Terms of Service, Cookie Policy, Privacy Policy and Content Policies.
+    All trademarks are properties of their respective owners. 2008-2021 © pomato™ Ltd. All rights reserved.</p>
+    </div>
+    <!-- Copyright -->
+  </footer>
+  <!-- Footer -->
+
+
+   <!-- up arrow -->
+
+<div class="fixed-bottom pl-5 pb-2" > <a href="#up" class="btn btn-danger btn-sm active" role="button" aria-pressed="true"><i class="fas fa-arrow-circle-up" style="font-size: 20px;"></i></a> </div> 
+
+<!-- chatbot -->
+
+
+<label class="open-button" onclick="openForm()"><i class="fas fa-comments" style="font-size: 30px;"></i></label>
+
+<div class="chat-popup" id="myForm1">
+  <form action="/action_page.php" class="form-container">
+    <h1>Feedback</h1>
+
+    <label for="msg"><b>Welcome to pomato website.</b></label>
+    <textarea placeholder="Please give your feedback here" name="msg" required></textarea>
+
+    <button type="submit" class="btn">Send</button>
+    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+  </form>
+</div>
+
+<script>
+function openForm() {
+  document.getElementById("myForm1").style.display = "block";
+}
+
+function closeForm() {
+  document.getElementById("myForm1").style.display = "none";
+}
+</script>
+
+
+
+
+</div>
+</body>
+</html>
